@@ -1,128 +1,224 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Challenge Reflection</title>
+  
+  <style type="text/css" media="screen">
+    body {font-family:verdana, sans-serif; color:#666; background:#fafafa; padding:20px;}
+/*    #page {text-align:left; max-width:600px; margin:0 auto;} */
+    h1 {text-align:center;}
+    h2 {text-align:center;}
+	p {color:black;}
+    label {font-size:16px;}
+/*    label i {font-style:normal; display:inline-block; text-align:right; width:100px;}*/
+/*    label textarea {vertical-align:top;}*/
+    button {margin-left:105px; padding:5px; margin-top:5px; font-size:16px;}
+/*    input, textarea {width:400px; font-size:16px; font-family: courier, "courier new", monospace; margin:0 0 5px 0; padding:5px; border:1px solid #eee;}*/
+/*    select {margin:0 0 5px 0;}*/
+    @media (min-width:300px) and (max-width: 768px) {
+/*      input, textarea {width:100%;}*/
+      label i {display:block; width:auto; text-align:left;}
+      button {display:block; margin:0;}
+    }
+
+  </style>
+  
+  <script type="text/javascript">
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+        } 
+
+    if(mm<10) {
+        mm='0'+mm
+        } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+
+
+    function saveFormAsTextFile()
+        {
+        var textToSave =
+         '||Did you have a goal/goals?||' + document.getElementById('HaveGoals').value + '||' +
+         '||Did you at any point change goals?||' + document.getElementById('GoalChange').value + '||' +
+         '||Did you stick to it/them?||' + document.getElementById('GoalCommitment').value + '||' +
+         '||Did you accomplish any one of your goals?||' + document.getElementById('GoalAccomplishment').value + '||' +
+         '||How would you say most of your time was spent?||' + document.getElementById('TimeSpent').value + '||' +
+         '||How would you say you felt when you first started?||' + document.getElementById('InitialFeelings').value + '||' +
+         '||How would you say you felt when the timer stopped?||' + document.getElementById('FinalFeelings').value + '||' +
+         '||What was one tech-related thing you learned, relearned, or improved on?||' + document.getElementById('Skills').value + '||' +
+         '||If you could go back, what would you do differently?||' + document.getElementById('Reflection').value + '||'
+ 
+        var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+        var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+        var fileNameToSaveAs = document.getElementById("filename").value;
+
+        var downloadLink = document.createElement("a");
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "Download File";
+        downloadLink.href = textToSaveAsURL;
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+
+        downloadLink.click();
+        }
+
+    function destroyClickedElement(event)
+        {
+        document.body.removeChild(event.target);
+        }
+  </script>
 </head>
 <body>
 	<form onSubmit="WriteToFile(this)">
-		<div class="form-check mb-4">
-			<p class="text-center">Did you push your code to GitHub?</p>
-			<input class="form-check-input" name="group1" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">Yes</label>
-			<input class="form-check-input" name="group1" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">No</label>
-		</div>
+		<h1>100 Days of Code Challenge</h1>
+		<h2>Reflection Survey</h2>
 
-		<div class="form-check mb-4">
-			<p class="text-center">Did you have a goal/goals?</p>
-			<input class="form-check-input" name="group2" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">Yes</label>
-			<input class="form-check-input" name="group2" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">No</label>
-		</div>
+		<ol>
+			<li>
+				<div class="form-check mb-4">
+					<p class="text-center">Did you have a goal/goals?</p>
+					<input id="HaveGoals" class="form-check-input" name="group2" type="radio" id="radio-179" value="option1">
+					<label class="form-check-label" for="radio-179">Yes<br></label>
+					<input class="form-check-input" name="group2" type="radio" id="radio-179" value="option1">
+					<label class="form-check-label" for="radio-179">No</label>
+				</div>
+			</li>
+			<br>
+			<li>
+				<div class="form-check mb-4">
+					<p id="GoalCommitment" class="text-center">Did you stick to it/them?</p>
+					<input class="form-check-input" name="group3" type="radio" id="radio-179" value="option1">
+					<label class="form-check-label" for="radio-179">Yes<br></label>
+					<input class="form-check-input" name="group3" type="radio" id="radio-179" value="option1">
+					<label class="form-check-label" for="radio-179">No</label>
+				</div>
+			</li>
+			<br>
+			<li>
+				<div class="form-check mb-4">
+				<p id="GoalChange" class="text-center">Did you at any point change goals?</p>
+					<input class="form-check-input" name="group4" type="radio" id="radio-179" value="option1">
+					<label class="form-check-label" for="radio-179">Yes<br></label>
+					<input class="form-check-input" name="group4" type="radio" id="radio-179" value="option1">
+					<label class="form-check-label" for="radio-179">No</label>
+				</div>
+				</li>
+				<br>	
+			<li>
+				<div class="form-check mb-4">
+					<p class="text-center">Did you accomplish any one of your goals?</p>
+					<input class="form-check-input" name="group5" type="radio" id="radio-179" value="option1">
+					<label class="form-check-label" for="radio-179">Yes<br></label>
+					<input class="form-check-input" name="group5" type="radio" id="radio-179" value="option1">
+					<label class="form-check-label" for="radio-179">No</label>
+				</div>
+				</li>
+				<br>	
+			<li>
+				<div class="form-check mb-4">
+					<p class="text-center">How would you say most of your time was spent?</p>
+						<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
+						<label class="form-check-label" for="radio-179">Designing<br></label>
+						<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
+						<label class="form-check-label" for="radio-179">Developing<br></label>
+						<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
+						<label class="form-check-label" for="radio-179">Debugging<br></label>
+						<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">	
+						<label class="form-check-label" for="radio-179">Studying<br></label>
+						<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
+						<label class="form-check-label" for="radio-179">Testing<br></label>
+						<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
+						<label class="form-check-label" for="radio-179">Troubleshooting<br></label>
+						<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
+						<label class="form-check-label" for="radio-179">Analyzing<br></label>
+						<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">	
+						<label class="form-check-label" for="radio-179">Distracted<br></label>
+						<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">	
+						<label class="form-check-label" for="radio-179">Being Indecisive</label>
+				</div>
+			</li>
+			<br>
+			<li>
+				<div class="form-check mb-4">
+					<p class="text-center">How would you say you felt when you first started?</p>
+					<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Motivated<br></label>
+					<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Eager<br></label>
+					<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Inspired<br></label>
+					<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Enthusiastic<br></label>
+					<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Indifferent<br></label>
+					<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Rushed<br></label>
+					<input class="form-check-i0nput" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Frustrated<br></label>
+					<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Annoyed<br></label>
+					<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Sluggish<br></label>
+					<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Unmotivated</label>
+				</div>
+			</li>
+			<br>
+			<li>
+				<div class="form-check mb-4">
+				<p class="text-center">How would you say you felt after the session?</p>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Accomplished<br></label>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Eager<br></label>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Inspired<br></label>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Enthusiastic<br></label>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Indifferent<br></label>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Rushed<br></label>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Frustrated<br></label>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Annoyed<br></label>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Disappointed<br></label>
+					<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
+					<label class="form-check-label" for="radio-179">Defeated</label>
+				</div>
+			</li>
+			<br>
+			<li>
+				<div class="form-check mb-4">
+					<p class="text-center">What <strong>one</strong> tech-related thing did you learn, relearn, practice?</p>
+					<textarea cols="40" rows="3" placeholder="e.g. Python, Bubble Sort Algorithm"></textarea>
+				</div>
+			</li>
+			<br>
+			<li>
+				<div class="form-check mb-4">
+					<p class="text-center">If you could go back, what would you do differently?</p>
+					<textarea cols="40" rows="10" placeholder="e.g. Stop making the app pretty and just focus on making it work"></textarea>
+				</div>
+			</li>
+			<br>
+		</ol>
 
-		<div class="form-check mb-4">
-			<p class="text-center">Did you stick to it/them?</p>
-			<input class="form-check-input" name="group3" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">Yes</label>
-			<input class="form-check-input" name="group3" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">No</label>
-		</div>
-
-		<div class="form-check mb-4">
-		<p class="text-center">Did you at any point change goals?</p>
-			<input class="form-check-input" name="group4" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">Yes</label>
-			<input class="form-check-input" name="group4" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">No</label>
-		</div>	
-
-		<div class="form-check mb-4">
-			<p class="text-center">Did you accomplish any one of your goals?</p>
-			<input class="form-check-input" name="group5" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">Yes</label>
-			<input class="form-check-input" name="group5" type="radio" id="radio-179" value="option1">
-			<label class="form-check-label" for="radio-179">No</label>
-		</div>	
-
-		<div class="form-check mb-4">
-			<p class="text-center">How would you say most of your time was spent?</p>
-				<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
-				<label class="form-check-label" for="radio-179">Designing</label>
-				<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
-				<label class="form-check-label" for="radio-179">Developing</label>
-				<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
-				<label class="form-check-label" for="radio-179">Debugging</label>
-				<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">	
-				<label class="form-check-label" for="radio-179">Studying</label>
-				<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
-				<label class="form-check-label" for="radio-179">Testing</label>
-				<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
-				<label class="form-check-label" for="radio-179">Troubleshooting</label>
-				<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">
-				<label class="form-check-label" for="radio-179">Analyzing</label>
-				<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">	
-				<label class="form-check-label" for="radio-179">Distracted</label>
-				<input class="form-check-input" name="group6" type="radio" id="radio-179" value="option1">	
-				<label class="form-check-label" for="radio-179">Being Indecisive</label>
-		</div>
-
-		<div class="form-check mb-4">
-			<p class="text-center">How would you say you felt when you first started?</p>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Motivated</label>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Eager</label>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Inspired</label>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Enthusiastic</label>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Indifferent</label>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Rushed</label>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Frustrated</label>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Annoyed</label>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Sluggish</label>
-			<input class="form-check-input" name="group7" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Unmotivated</label>
-		</div>
-
-		<div class="form-check mb-4">
-		<p class="text-center">How would you say you felt when the timer stopped?</p>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Accomplished</label>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Eager</label>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Inspired</label>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Enthusiastic</label>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Indifferent</label>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Rushed</label>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Frustrated</label>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Annoyed</label>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Disappointed</label>
-			<input class="form-check-input" name="group8" type="radio" id="radio-179" value="option1">	
-			<label class="form-check-label" for="radio-179">Defeated</label>
-		</div>
-
-		<div class="form-check mb-4">
-			<p class="text-center">If you could go back, what would you do differently?</p>
-			<input type="text" name="group9" id="advice" size="100">
-		</div>
-
-		<input type="submit" value="submit">
-
+    <button onclick="saveFormAsTextFile()">
+      Save to File
+    </button>
 	</form>
 </body>
 </html>
